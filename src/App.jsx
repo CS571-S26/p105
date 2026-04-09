@@ -1,11 +1,15 @@
+import { RouterProvider } from "react-aria-components";
+import { useNavigate, useHref } from "react-router-dom";
 import Navbar from "./components/layout/navbar";
+import AppRouter from "./router";
 
 function App() {
+  const navigate = useNavigate();
   return (
-    <div>
-      <Navbar></Navbar>
-    </div>
+    <RouterProvider navigate={navigate} useHref={useHref}>
+      <Navbar />
+      <AppRouter />
+    </RouterProvider>
   );
 }
-
 export default App;

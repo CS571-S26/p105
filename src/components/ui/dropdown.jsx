@@ -17,7 +17,7 @@ export function Dropdown({ label, children }) {
         </Button>
         {isOpen && (
           <div className="absolute top-full right-0 pt-1">
-            <Menu className="flex flex-col bg-white py-2 min-w-[120px] shadow-sm outline-none text-right">
+            <Menu className="flex flex-col bg-white py-2 pr-3 pl-30 w-max shadow-sm outline-none text-right">
               {children}
             </Menu>
           </div>
@@ -33,8 +33,8 @@ export function DropdownItem({ to, children }) {
       <NavLink
         to={to}
         className={({ isActive }) =>
-          `block px-4 py-1.5 text-sm tracking-wide text-rose-200 hover:text-rose-300 no-underline ${
-            isActive ? "underline decoration-rose-200 hover:text-rose-300" : ""
+          `block px-0 py-1 text-sm tracking-wide text-rose-200 hover:text-rose-300 ${
+            isActive ? "underline decoration-rose-200" : "no-underline"
           }`
         }
       >
