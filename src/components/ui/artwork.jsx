@@ -1,3 +1,3 @@
 export default function Artwork() {
-  return <div></div>;
+  return <img></img>;
 }
