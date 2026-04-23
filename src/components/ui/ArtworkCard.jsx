@@ -1,100 +1,53 @@
-// ArtworkCard.jsx
-import { useNavigate } from 'react-router-dom';
+// components/ui/ArtworkCard.jsx
+import { useNavigate } from "react-router-dom";
+import { Button } from "react-aria-components";
 
 function ArtworkCard({ artwork, yearSlug }) {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate(`/artwork/${yearSlug}/${artwork.id}`);
-  };
-
   return (
-    <div className="artwork-card" onClick={handleClick} role="button" tabIndex={0}
-      onKeyDown={e => e.key === 'Enter' && handleClick()}>
-      <div className="artwork-card-img-wrap">
+    <Button
+      className="group block w-full text-left break-inside-avoid mb-6
+                 outline-none cursor-pointer rounded-sm
+                 focus-visible:ring-2 focus-visible:ring-stone-800 focus-visible:ring-offset-2"
+      onPress={() => navigate(`/artwork/${yearSlug}/${artwork.id}`)}
+    >
+      {/* Image */}
+      <div className="relative overflow-hidden bg-stone-100">
         <img
           src={artwork.image}
           alt={artwork.title}
-          className="artwork-card-img"
+          className="w-full h-auto block transition-transform duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]
+                     group-hover:scale-[1.03]"
           loading="lazy"
         />
-        <div className="artwork-card-overlay">
-          <span className="artwork-card-zoom-hint">click to view</span>
+        {/* Hover overlay */}
+        <div
+          className="absolute inset-0 flex items-center justify-center
+                     bg-black/0 group-hover:bg-black/[0.18] transition-colors duration-300"
+        >
+          <span
+            className="font-['Jost'] text-[0.68rem] uppercase tracking-[0.12em] text-white
+                       opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            click to view
+          </span>
         </div>
       </div>
-      <div className="artwork-card-info">
-        <p className="artwork-card-title">{artwork.title}</p>
-        {artwork.medium && (
-          <p className="artwork-card-meta">
-            {artwork.medium}{artwork.size ? ` | ${artwork.size}` : ''}
+
+      {/* Caption */}
+      <div className="pt-2.5">
+        <p className="font-['Cormorant_Garamond'] text-[0.9rem] italic leading-snug text-stone-800 mb-0.5">
+          {artwork.title}
+        </p>
+        {(artwork.medium || artwork.size) && (
+          <p className="font-['Jost'] text-[0.7rem] tracking-[0.04em] text-stone-400">
+            {artwork.medium}
+            {artwork.size ? ` | ${artwork.size}` : ""}
           </p>
         )}
       </div>
-
-      <style>{`
-        .artwork-card {
-          cursor: pointer;
-          break-inside: avoid;
-          margin-bottom: 1.5rem;
-        }
-        .artwork-card-img-wrap {
-          position: relative;
-          overflow: hidden;
-          background: #f5f5f3;
-        }
-        .artwork-card-img {
-          width: 100%;
-          height: auto;
-          display: block;
-          transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .artwork-card:hover .artwork-card-img {
-          transform: scale(1.03);
-        }
-        .artwork-card-overlay {
-          position: absolute;
-          inset: 0;
-          background: rgba(0,0,0,0);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: background 0.3s ease;
-        }
-        .artwork-card:hover .artwork-card-overlay {
-          background: rgba(0,0,0,0.18);
-        }
-        .artwork-card-zoom-hint {
-          color: #fff;
-          font-family: 'Cormorant Garamond', Georgia, serif;
-          font-size: 0.85rem;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
-        .artwork-card:hover .artwork-card-zoom-hint {
-          opacity: 1;
-        }
-        .artwork-card-info {
-          padding: 0.6rem 0 0;
-        }
-        .artwork-card-title {
-          font-family: 'Cormorant Garamond', Georgia, serif;
-          font-size: 0.9rem;
-          font-style: italic;
-          color: #1a1a1a;
-          margin: 0 0 0.15rem;
-          line-height: 1.3;
-        }
-        .artwork-card-meta {
-          font-family: 'Jost', sans-serif;
-          font-size: 0.72rem;
-          color: #888;
-          letter-spacing: 0.04em;
-          margin: 0;
-        }
-      `}</style>
-    </div>
+    </Button>
   );
 }
 

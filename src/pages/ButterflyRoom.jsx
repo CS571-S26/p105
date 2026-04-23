@@ -1,3 +1,4 @@
+// pages/ButterflyRoom.jsx
 import { useEffect, useRef, useState, useCallback } from "react";
 import { butterflies } from "../data/artworkData";
 
@@ -11,11 +12,11 @@ const THEMES = {
     text: "#2c5a73",
   },
   sunset: {
-    top: "#4a2c40", // Muted Plum (Darker top for better contrast)
-    middle: "#cb765f", // Dusky Terracotta
-    bottom: "#8e443d", // Deep Rust
+    top: "#4a2c40",
+    middle: "#cb765f",
+    bottom: "#8e443d",
     firefly: "#fffeb0",
-    text: "#3d1e16", // Deep Burnt Umber for legibility
+    text: "#3d1e16",
   },
   twilight: {
     top: "#2c3e50",
@@ -73,7 +74,6 @@ function ButterflyRoom() {
   const mouseRef = useRef({ x: -1000, y: -1000 });
   const rafRef = useRef(null);
 
-  // Initialize with a random theme
   const [currentTheme] = useState(() => {
     const keys = Object.keys(THEMES);
     return keys[Math.floor(Math.random() * keys.length)];
@@ -123,7 +123,7 @@ function ButterflyRoom() {
     const GLIDE_RADIUS = 25;
     const GLIDE_STRENGTH = 0.2;
     const STEER_SPEED = 0.03;
-    const ESCAPE_SPEED_BOOST = 2.5;
+    const ESCAPE_SPEED_BOOST = 4;
     const DRAG_EASING = 0.1;
 
     const tick = () => {
@@ -206,23 +206,26 @@ function ButterflyRoom() {
   const caughtBf = butterfliesData.find((b) => b.id === selectedBfId);
 
   return (
-    <div className="butterfly-room">
+    <div className="min-h-[125vh] flex flex-col overflow-hidden">
+      {/* ── Stage ── */}
       <div
-        className="bfr-stage"
         ref={containerRef}
+        className="relative h-[110vh] w-full overflow-hidden cursor-crosshair active:cursor-grabbing"
         onMouseDown={handleMouseDown}
       >
+        {/* Gradient background — dynamic colours prevent Tailwind, so inline style stays */}
         <div
-          className="bfr-bg-overlay"
+          className="absolute inset-0 transition-[background] duration-1000 ease-in-out"
           style={{
             background: `linear-gradient(to bottom, ${themeColors.top} 0%, ${themeColors.middle} 50%, ${themeColors.bottom} 100%)`,
           }}
         />
 
+        {/* Fireflies */}
         {firefliesData.map((f) => (
           <div
             key={f.id}
-            className="bfr-firefly"
+            className="absolute rounded-full pointer-events-none"
             style={{
               left: `${f.x}%`,
               top: `${f.y}%`,
@@ -230,10 +233,12 @@ function ButterflyRoom() {
               height: f.size,
               opacity: currentTheme === "day" ? f.opacity * 0.2 : f.opacity,
               backgroundColor: themeColors.firefly,
+              boxShadow: "0 0 10px 2px rgba(255, 254, 176, 0.4)",
             }}
           />
         ))}
 
+        {/* Butterflies */}
         {butterfliesData.map((bf) => {
           const frameTime = 5000;
           const step = Math.floor((Date.now() + bf.flutterOffset) / frameTime);
@@ -242,48 +247,63 @@ function ButterflyRoom() {
           return (
             <div
               key={bf.id}
-              className={`bfr-butterfly ${selectedBfId === bf.id ? "is-caught" : ""} ${draggedBfId === bf.id ? "is-dragging" : ""}`}
+              className={[
+                "absolute pointer-events-none will-change-[left,top,transform]",
+                draggedBfId === bf.id ? "z-[100]" : "z-[5]",
+              ].join(" ")}
               style={{
                 left: `${bf.x}%`,
                 top: `${bf.y}%`,
                 width: `${bf.displaySize}px`,
-                transform: `
-                  translate(-50%, -50%)
-                  scaleX(${bf.flipH ? -1 : 1})
-                  rotate(${bf.rotation + jitter}deg)
-                `,
+                transform: `translate(-50%, -50%) scaleX(${bf.flipH ? -1 : 1}) rotate(${bf.rotation + jitter}deg)`,
               }}
             >
               <img
                 src={bf.image}
                 alt={bf.name}
-                className="bfr-bf-img"
-                style={{ width: "100%", display: "block" }}
+                className="w-full block"
+                style={{
+                  filter: "drop-shadow(0 0 10px rgba(0,0,0,0.2))",
+                  transition:
+                    "transform 0.5s cubic-bezier(0.1, 0, 0.2, 1), filter 0.5s ease",
+                }}
               />
             </div>
           );
         })}
       </div>
 
+      {/* ── Bottom panel ── */}
       <div
-        className="bfr-bottom-panel"
+        className="fixed bottom-0 left-0 right-0 h-[140px] flex items-center justify-center z-[200] pointer-events-none"
         style={{
           background: `linear-gradient(to top, ${themeColors.bottom} 85%, transparent)`,
         }}
       >
-        <div className="bfr-panel-container">
-          <div className={`bfr-info-content ${caughtBf ? "is-active" : ""}`}>
+        <div className="relative w-full max-w-[700px] h-[100px]">
+          {/* Butterfly info — visible when a butterfly is near the cursor */}
+          <div
+            className={[
+              "absolute inset-0 flex items-center justify-center gap-6",
+              "transition-[opacity,transform] duration-[400ms] ease-in-out",
+              caughtBf
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-2 pointer-events-none",
+            ].join(" ")}
+          >
             {caughtBf && (
               <>
                 <img
                   src={caughtBf.image}
                   alt={caughtBf.name}
-                  className="bfr-info-img"
+                  className="h-[65px] w-auto"
                 />
-                <div className="bfr-info-text">
-                  <p className="bfr-info-name">{caughtBf.name}</p>
+                <div>
+                  <p className="font-['Cormorant_Garamond'] text-[1.6rem] italic text-white m-0">
+                    {caughtBf.name}
+                  </p>
                   <p
-                    className="bfr-info-meta"
+                    className="font-['Jost'] text-[0.75rem] tracking-[0.1em] uppercase m-0"
                     style={{ color: themeColors.text }}
                   >
                     {caughtBf.size} · {caughtBf.year}
@@ -292,9 +312,22 @@ function ButterflyRoom() {
               </>
             )}
           </div>
-          <div className={`bfr-general-desc ${!caughtBf ? "is-active" : ""}`}>
-            <p style={{ color: themeColors.text }}>
-              A convention is a useful artist’s tool: a handy template to
+
+          {/* General description — visible when no butterfly is near */}
+          <div
+            className={[
+              "absolute inset-0 flex items-center justify-center",
+              "transition-[opacity,transform] duration-[400ms] ease-in-out",
+              !caughtBf
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-2 pointer-events-none",
+            ].join(" ")}
+          >
+            <p
+              className="font-['Cormorant_Garamond'] text-[1.1rem] leading-[1.6] italic text-center max-w-[600px] m-0"
+              style={{ color: themeColors.text }}
+            >
+              A convention is a useful artist's tool: a handy template to
               revisit and practice any time. Nature created a dazzling diversity
               of butterflies and moths, which are the inspiration for this
               artistic convention.
@@ -302,98 +335,6 @@ function ButterflyRoom() {
           </div>
         </div>
       </div>
-
-      <style>{`
-        .butterfly-room {
-          min-height: 125vh;
-          display: flex;
-          flex-direction: column;
-          overflow: hidden;
-        }
-        .bfr-stage {
-          position: relative;
-          height: 110vh;
-          width: 100%;
-          overflow: hidden;
-          cursor: crosshair;
-        }
-        .bfr-stage:active { cursor: grabbing; }
-        .bfr-bg-overlay {
-          position: absolute;
-          inset: 0;
-          transition: background 1s ease;
-        }
-        .bfr-firefly {
-          position: absolute;
-          border-radius: 50%;
-          box-shadow: 0 0 10px 2px rgba(255, 254, 176, 0.4);
-          pointer-events: none;
-        }
-        .bfr-butterfly {
-          position: absolute;
-          pointer-events: none;
-          z-index: 5;
-          will-change: left, top, transform;
-        }
-        .bfr-butterfly.is-dragging { z-index: 100; }
-        .bfr-bf-img {
-          filter: drop-shadow(0 0 10px rgba(0,0,0,0.2));
-          transition: transform 0.5s cubic-bezier(0.1, 0, 0.2, 1), filter 0.5s ease;
-        }
-        .bfr-bottom-panel {
-          position: fixed;
-          bottom: 0; left: 0; right: 0;
-          height: 140px; 
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 200;
-          pointer-events: none;
-        }
-        .bfr-panel-container {
-          position: relative;
-          width: 100%;
-          max-width: 700px;
-          height: 100px;
-        }
-        .bfr-info-content, .bfr-general-desc {
-          position: absolute;
-          inset: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 1.5rem;
-          transition: opacity 0.4s ease, transform 0.4s ease;
-          opacity: 0;
-          transform: translateY(8px);
-        }
-        .bfr-info-content.is-active, .bfr-general-desc.is-active {
-          opacity: 1;
-          transform: translateY(0);
-        }
-        .bfr-info-img { height: 65px; }
-        .bfr-info-name {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: 1.6rem; 
-          margin: 0; color: #fff;
-          font-style: italic;
-        }
-        .bfr-info-meta {
-          font-family: 'Jost', sans-serif;
-          font-size: 0.75rem;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-        }
-        .bfr-general-desc p {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: 1.1rem;
-          line-height: 1.6;
-          font-style: italic;
-          text-align: center;
-          max-width: 600px;
-          margin: 0;
-        }
-      `}</style>
     </div>
   );
 }

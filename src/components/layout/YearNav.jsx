@@ -1,5 +1,6 @@
-// YearNav.jsx
+// components/layout/YearNav.jsx
 import { useNavigate } from "react-router-dom";
+import { Button } from "react-aria-components";
 import { YEARS } from "../../data/artworkData";
 
 function YearNav({ currentYear }) {
@@ -9,77 +10,58 @@ function YearNav({ currentYear }) {
   const next = idx < YEARS.length - 1 ? YEARS[idx + 1] : null;
 
   return (
-    <div className="year-nav">
-      {prev && (
-        <button
-          className="year-nav-btn"
-          onClick={() => navigate(`/artwork/${prev}`)}
+    <div className="flex items-center justify-between pt-8 mt-12 border-t border-stone-200">
+      {/* Prev */}
+      {prev ? (
+        <Button
+          className="font-['Jost'] text-[0.75rem] uppercase tracking-[0.1em] text-stone-400
+                     hover:text-stone-900 transition-colors outline-none cursor-pointer
+                     focus-visible:ring-2 focus-visible:ring-stone-800 rounded-sm px-1"
+          onPress={() => navigate(`/artwork/${prev}`)}
         >
           ← {prev}
-        </button>
+        </Button>
+      ) : (
+        <span />
       )}
-      <div className="year-nav-dots">
+
+      {/* Dot indicators */}
+      <div
+        className="flex items-center gap-2"
+        role="tablist"
+        aria-label="Year navigation"
+      >
         {YEARS.map((y) => (
-          <button
+          <Button
             key={y}
-            className={`year-dot ${y === currentYear ? "active" : ""}`}
-            onClick={() => navigate(`/artwork/${y}`)}
-            title={y}
+            role="tab"
+            aria-selected={y === currentYear}
+            aria-label={y}
+            className={`rounded-full border-none outline-none cursor-pointer transition-all duration-200
+                        focus-visible:ring-2 focus-visible:ring-stone-800
+                        ${
+                          y === currentYear
+                            ? "w-2 h-2 bg-stone-800 scale-[1.4]"
+                            : "w-1.5 h-1.5 bg-stone-300 hover:bg-stone-500"
+                        }`}
+            onPress={() => navigate(`/artwork/${y}`)}
           />
         ))}
       </div>
-      {next && (
-        <button
-          className="year-nav-btn"
-          onClick={() => navigate(`/artwork/${next}`)}
+
+      {/* Next */}
+      {next ? (
+        <Button
+          className="font-['Jost'] text-[0.75rem] uppercase tracking-[0.1em] text-stone-400
+                     hover:text-stone-900 transition-colors outline-none cursor-pointer
+                     focus-visible:ring-2 focus-visible:ring-stone-800 rounded-sm px-1"
+          onPress={() => navigate(`/artwork/${next}`)}
         >
           {next} →
-        </button>
+        </Button>
+      ) : (
+        <span />
       )}
-
-      <style>{`
-        .year-nav {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 2rem 0 3rem;
-          border-top: 1px solid #e0ddd8;
-          margin-top: 3rem;
-        }
-        .year-nav-btn {
-          background: none;
-          border: none;
-          font-family: 'Jost', sans-serif;
-          font-size: 0.8rem;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: #555;
-          cursor: pointer;
-          padding: 0.4rem 0;
-          transition: color 0.2s;
-        }
-        .year-nav-btn:hover { color: #111; }
-        .year-nav-dots {
-          display: flex;
-          gap: 0.5rem;
-          align-items: center;
-        }
-        .year-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: #ccc;
-          border: none;
-          cursor: pointer;
-          padding: 0;
-          transition: background 0.2s, transform 0.2s;
-        }
-        .year-dot.active {
-          background: #1a1a1a;
-          transform: scale(1.4);
-        }
-        .year-dot:hover { background: #888; }
-      `}</style>
     </div>
   );
 }
