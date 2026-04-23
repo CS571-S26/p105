@@ -220,7 +220,7 @@ function ButterflyRoom() {
       {/* ── Stage ── */}
       <div
         ref={containerRef}
-        className="relative h-[115vh] w-full overflow-hidden cursor-crosshair active:cursor-grabbing"
+        className="relative h-[125vh] w-full overflow-hidden cursor-crosshair active:cursor-grabbing"
         onMouseDown={handleMouseDown}
       >
         <div
@@ -241,7 +241,7 @@ function ButterflyRoom() {
               height: f.size,
               opacity: currentTheme === "day" ? f.opacity * 0.2 : f.opacity,
               backgroundColor: themeColors.firefly,
-              boxShadow: "0 0 10px 2px rgba(255, 254, 176, 0.4)",
+              boxShadow: "0 0 10px 5px rgba(255, 254, 176, 0.4)",
             }}
           />
         ))}
