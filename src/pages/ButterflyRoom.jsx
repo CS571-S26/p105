@@ -327,10 +327,12 @@ function ButterflyRoom() {
               className="font-['Cormorant_Garamond'] text-[1.1rem] leading-[1.6] italic text-center max-w-[600px] m-0"
               style={{ color: themeColors.text }}
             >
-              A convention is a useful artist's tool: a handy template to
+              A convention is a useful artist’s tool: a handy template to
               revisit and practice any time. Nature created a dazzling diversity
               of butterflies and moths, which are the inspiration for this
-              artistic convention.
+              artistic convention. They happen to be the perfect symbol of
+              transformation with which to explore colors, details, and
+              symmetry.
             </p>
           </div>
         </div>
