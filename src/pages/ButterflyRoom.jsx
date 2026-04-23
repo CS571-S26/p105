@@ -1,36 +1,35 @@
-// pages/ButterflyRoom.jsx
 import { useEffect, useRef, useState, useCallback } from "react";
 import { butterflies } from "../data/artworkData";
 
 // --- THEME PRESETS ---
 const THEMES = {
   day: {
-    top: "#e0f2fe",
-    middle: "#bae6fd",
-    bottom: "#7dd3fc",
-    firefly: "rgba(255, 255, 255, 0.6)",
-    text: "#2c5a73",
+    top: "#00acb3",
+    middle: "#56b0a1",
+    bottom: "#f7a6a1",
+    firefly: "#f2c0a1",
+    text: "#f2d8a8",
   },
   sunset: {
-    top: "#4a2c40",
-    middle: "#cb765f",
-    bottom: "#8e443d",
-    firefly: "#fffeb0",
-    text: "#3d1e16",
+    top: "#bbcfb2",
+    middle: "#fc9ea4",
+    bottom: "#b7768c",
+    firefly: "#e1f1e8",
+    text: "#273147",
   },
   twilight: {
-    top: "#2c3e50",
-    middle: "#4ca1af",
-    bottom: "#2c3e50",
-    firefly: "#fffeb0",
-    text: "#4a5073",
+    top: "#283545",
+    middle: "#265a73",
+    bottom: "#729693",
+    firefly: "#cddcd5",
+    text: "#f7fcb4",
   },
   night: {
-    top: "#05071a",
-    middle: "#02040f",
-    bottom: "#05071a",
-    firefly: "#fffeb0",
-    text: "#5d6385",
+    top: "#101612",
+    middle: "#3c3e34",
+    bottom: "#9c978b",
+    firefly: "#f7f7f6",
+    text: "#f7f7f6",
   },
 };
 
@@ -52,7 +51,7 @@ function initButterfly(bf) {
     displaySize: normalizedCm * sizeMultiplier + 80,
     flipH: Math.random() > 0.5,
     rotation: 0,
-    flutterOffset: Math.random() * 5000,
+    flutterOffset: Math.random() * 4000,
   };
 }
 
@@ -91,6 +90,14 @@ function ButterflyRoom() {
   const [draggedBfId, setDraggedBfId] = useState(null);
 
   const themeColors = THEMES[currentTheme];
+
+  // --- PREVENT WHITE SCROLL VOID ---
+  useEffect(() => {
+    document.body.style.backgroundColor = themeColors.bottom;
+    return () => {
+      document.body.style.backgroundColor = "";
+    };
+  }, [themeColors.bottom]);
 
   const handleMouseDown = useCallback(() => {
     if (selectedBfId) setDraggedBfId(selectedBfId);
@@ -206,14 +213,16 @@ function ButterflyRoom() {
   const caughtBf = butterfliesData.find((b) => b.id === selectedBfId);
 
   return (
-    <div className="min-h-[125vh] flex flex-col overflow-hidden">
+    <div
+      className="min-h-[125vh] flex flex-col overflow-x-hidden"
+      style={{ backgroundColor: themeColors.bottom }}
+    >
       {/* ── Stage ── */}
       <div
         ref={containerRef}
-        className="relative h-[110vh] w-full overflow-hidden cursor-crosshair active:cursor-grabbing"
+        className="relative h-[115vh] w-full overflow-hidden cursor-crosshair active:cursor-grabbing"
         onMouseDown={handleMouseDown}
       >
-        {/* Gradient background — dynamic colours prevent Tailwind, so inline style stays */}
         <div
           className="absolute inset-0 transition-[background] duration-1000 ease-in-out"
           style={{
@@ -221,7 +230,6 @@ function ButterflyRoom() {
           }}
         />
 
-        {/* Fireflies */}
         {firefliesData.map((f) => (
           <div
             key={f.id}
@@ -238,7 +246,6 @@ function ButterflyRoom() {
           />
         ))}
 
-        {/* Butterflies */}
         {butterfliesData.map((bf) => {
           const frameTime = 5000;
           const step = Math.floor((Date.now() + bf.flutterOffset) / frameTime);
@@ -275,13 +282,12 @@ function ButterflyRoom() {
 
       {/* ── Bottom panel ── */}
       <div
-        className="fixed bottom-0 left-0 right-0 h-[140px] flex items-center justify-center z-[200] pointer-events-none"
+        className="fixed bottom-0 left-0 right-0 h-[180px] flex items-center justify-center z-[200] pointer-events-none"
         style={{
-          background: `linear-gradient(to top, ${themeColors.bottom} 85%, transparent)`,
+          background: `linear-gradient(to top, ${themeColors.bottom} 0%, ${themeColors.bottom}e6 50%, transparent 100%)`,
         }}
       >
         <div className="relative w-full max-w-[700px] h-[100px]">
-          {/* Butterfly info — visible when a butterfly is near the cursor */}
           <div
             className={[
               "absolute inset-0 flex items-center justify-center gap-6",
@@ -313,18 +319,17 @@ function ButterflyRoom() {
             )}
           </div>
 
-          {/* General description — visible when no butterfly is near */}
           <div
             className={[
               "absolute inset-0 flex items-center justify-center",
               "transition-[opacity,transform] duration-[400ms] ease-in-out",
               !caughtBf
                 ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-2 pointer-events-none",
+                : "opacity-0 translate-y-0 pointer-events-none",
             ].join(" ")}
           >
             <p
-              className="font-['Cormorant_Garamond'] text-[1.1rem] leading-[1.6] italic text-center max-w-[600px] m-0"
+              className="font-['Cormorant_Garamond'] text-[1.1rem] leading-[1.6] italic text-center max-w-[1200px] m-0"
               style={{ color: themeColors.text }}
             >
               A convention is a useful artist’s tool: a handy template to
