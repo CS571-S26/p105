@@ -1,72 +1,10 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { butterflies } from "../data/artworkData";
-
-// --- THEME PRESETS ---
-const THEMES = {
-  day: {
-    top: "#00acb3",
-    middle: "#56b0a1",
-    bottom: "#f7a6a1",
-    firefly: "#f2c0a1",
-    text: "#f2d8a8",
-  },
-  sunset: {
-    top: "#bbcfb2",
-    middle: "#fc9ea4",
-    bottom: "#b7768c",
-    firefly: "#e1f1e8",
-    text: "#273147",
-  },
-  twilight: {
-    top: "#283545",
-    middle: "#265a73",
-    bottom: "#729693",
-    firefly: "#cddcd5",
-    text: "#f7fcb4",
-  },
-  night: {
-    top: "#101612",
-    middle: "#3c3e34",
-    bottom: "#9c978b",
-    firefly: "#f7f7f6",
-    text: "#f7f7f6",
-  },
-};
-
-function initButterfly(bf) {
-  const rawSize = bf.size || "10cm";
-  const numValue = parseFloat(rawSize.replace(/[^0-9.]/g, "")) || 10;
-  const normalizedCm = numValue > 40 ? numValue / 10 : numValue;
-  const sizeMultiplier = 50;
-
-  return {
-    ...bf,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    angle: Math.random() * Math.PI * 2,
-    speed: 0.03 + Math.random() * 0.02,
-    tx: Math.random() * 100,
-    ty: Math.random() * 100,
-    wanderTimer: Math.random() * 200,
-    displaySize: normalizedCm * sizeMultiplier + 80,
-    flipH: Math.random() > 0.5,
-    rotation: 0,
-    flutterOffset: Math.random() * 4000,
-  };
-}
-
-function initFirefly() {
-  return {
-    id: Math.random(),
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    vx: (Math.random() - 0.5) * 0.015,
-    vy: (Math.random() - 0.5) * 0.015,
-    size: 1.2 + Math.random() * 2,
-    opacity: Math.random(),
-    pulse: 0.004 + Math.random() * 0.006,
-  };
-}
+import { THEMES } from "../data/themes";
+import { initButterfly, initFirefly } from "../utils/butterflyUtils";
+import FireflyLayer from "../components/ui/FireflyLayer";
+import ButterflyLayer from "../components/ui/ButterflyLayer";
+import BottomPanel from "../components/layout/BottomPanel";
 
 function ButterflyRoom() {
   const containerRef = useRef(null);
@@ -107,6 +45,7 @@ function ButterflyRoom() {
     setDraggedBfId(null);
   }, []);
 
+  // --- MOUSE TRACKING ---
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -125,6 +64,7 @@ function ButterflyRoom() {
     };
   }, [handleMouseUp]);
 
+  // --- ANIMATION LOOP ---
   useEffect(() => {
     const CATCH_RADIUS = 10;
     const GLIDE_RADIUS = 25;
@@ -223,6 +163,7 @@ function ButterflyRoom() {
         className="relative h-[125vh] w-full overflow-hidden cursor-crosshair active:cursor-grabbing"
         onMouseDown={handleMouseDown}
       >
+        {/* Background gradient */}
         <div
           className="absolute inset-0 transition-[background] duration-1000 ease-in-out"
           style={{
@@ -230,118 +171,19 @@ function ButterflyRoom() {
           }}
         />
 
-        {firefliesData.map((f) => (
-          <div
-            key={f.id}
-            className="absolute rounded-full pointer-events-none"
-            style={{
-              left: `${f.x}%`,
-              top: `${f.y}%`,
-              width: f.size,
-              height: f.size,
-              opacity: currentTheme === "day" ? f.opacity * 0.2 : f.opacity,
-              backgroundColor: themeColors.firefly,
-              boxShadow: "0 0 10px 5px rgba(255, 254, 176, 0.4)",
-            }}
-          />
-        ))}
+        <FireflyLayer
+          firefliesData={firefliesData}
+          currentTheme={currentTheme}
+          themeColors={themeColors}
+        />
 
-        {butterfliesData.map((bf) => {
-          const frameTime = 5000;
-          const step = Math.floor((Date.now() + bf.flutterOffset) / frameTime);
-          const jitter = ((step % 3) - 1) * 3;
-
-          return (
-            <div
-              key={bf.id}
-              className={[
-                "absolute pointer-events-none will-change-[left,top,transform]",
-                draggedBfId === bf.id ? "z-[100]" : "z-[5]",
-              ].join(" ")}
-              style={{
-                left: `${bf.x}%`,
-                top: `${bf.y}%`,
-                width: `${bf.displaySize}px`,
-                transform: `translate(-50%, -50%) scaleX(${bf.flipH ? -1 : 1}) rotate(${bf.rotation + jitter}deg)`,
-              }}
-            >
-              <img
-                src={bf.image}
-                alt={bf.name}
-                className="w-full block"
-                style={{
-                  filter: "drop-shadow(0 0 10px rgba(0,0,0,0.2))",
-                  transition:
-                    "transform 0.5s cubic-bezier(0.1, 0, 0.2, 1), filter 0.5s ease",
-                }}
-              />
-            </div>
-          );
-        })}
+        <ButterflyLayer
+          butterfliesData={butterfliesData}
+          draggedBfId={draggedBfId}
+        />
       </div>
 
-      {/* ── Bottom panel ── */}
-      <div
-        className="fixed bottom-0 left-0 right-0 h-[180px] flex items-center justify-center z-[200] pointer-events-none"
-        style={{
-          background: `linear-gradient(to top, ${themeColors.bottom} 0%, ${themeColors.bottom}e6 50%, transparent 100%)`,
-        }}
-      >
-        <div className="relative w-full max-w-[700px] h-[100px]">
-          <div
-            className={[
-              "absolute inset-0 flex items-center justify-center gap-6",
-              "transition-[opacity,transform] duration-[400ms] ease-in-out",
-              caughtBf
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-2 pointer-events-none",
-            ].join(" ")}
-          >
-            {caughtBf && (
-              <>
-                <img
-                  src={caughtBf.image}
-                  alt={caughtBf.name}
-                  className="h-[65px] w-auto"
-                />
-                <div>
-                  <p className="font-['Cormorant_Garamond'] text-[1.6rem] italic text-white m-0">
-                    {caughtBf.name}
-                  </p>
-                  <p
-                    className="font-['Outfit'] text-[0.75rem] tracking-[0.1em] uppercase m-0"
-                    style={{ color: themeColors.text }}
-                  >
-                    {caughtBf.size} · {caughtBf.year}
-                  </p>
-                </div>
-              </>
-            )}
-          </div>
-
-          <div
-            className={[
-              "absolute inset-0 flex items-center justify-center",
-              "transition-[opacity,transform] duration-[400ms] ease-in-out",
-              !caughtBf
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-0 pointer-events-none",
-            ].join(" ")}
-          >
-            <p
-              className="font-['Cormorant_Garamond'] text-[1.1rem] leading-[1.6] italic text-center max-w-[1200px] m-0"
-              style={{ color: themeColors.text }}
-            >
-              A convention is a useful artist’s tool: a handy template to
-              revisit and practice any time. Nature created a dazzling diversity
-              of butterflies and moths, which are the inspiration for this
-              artistic convention. They happen to be the perfect symbol of
-              transformation with which to explore colors, details, and
-              symmetry.
-            </p>
-          </div>
-        </div>
-      </div>
+      <BottomPanel themeColors={themeColors} caughtBf={caughtBf} />
     </div>
   );
 }
