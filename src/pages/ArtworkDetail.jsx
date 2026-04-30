@@ -20,7 +20,7 @@ export default function ArtworkDetail() {
 
   if (!artwork)
     return (
-      <div className="p-20 text-center font-['Outfit',_sans-serif] text-stone-400">
+      <div className="p-20 text-center font-['Outfit',_sans-serif] text-rose-200">
         Artwork not found.
       </div>
     );
@@ -32,7 +32,7 @@ export default function ArtworkDetail() {
       {/* Back link */}
       <div className="pb-4">
         <Button
-          className="font-['Outfit',_sans-serif] text-xs uppercase tracking-widest text-stone-400 hover:text-black transition-colors outline-none cursor-pointer"
+          className="font-['Outfit',_sans-serif] text-xs uppercase tracking-widest text-rose-200 hover:text-black transition-colors outline-none cursor-pointer"
           onPress={() => navigate(`/artwork/${year}`)}
         >
           ← {year}
@@ -56,16 +56,16 @@ export default function ArtworkDetail() {
 
       {/* Metadata */}
       <section className="max-w-2xl mx-auto pb-6 border-b border-stone-100">
-        <h1 className="font-['Outfit',_sans-serif] text-2xl text-stone-900 mb-1 tracking-wide">
+        <h1 className="font-['Outfit',_sans-serif] text-2xl text-stone-500 mb-1 tracking-wide">
           {artwork.title}
         </h1>
-        <p className="font-['Outfit',_sans-serif] text-xs uppercase tracking-widest text-stone-400">
+        <p className="font-['Outfit',_sans-serif] text-xs uppercase tracking-widest text-rose-200">
           {[artwork.medium, artwork.size, artwork.year]
             .filter(Boolean)
             .join(" · ")}
         </p>
         {artwork.note && (
-          <p className="mt-3 font-['Outfit',_sans-serif] text-sm italic text-stone-400 border-l border-stone-200 pl-4">
+          <p className="mt-3 font-['Outfit',_sans-serif] text-sm italic text-rose-200 border-l border-stone-200 pl-4">
             {artwork.note}
           </p>
         )}

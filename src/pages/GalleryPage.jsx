@@ -15,9 +15,9 @@ function YearGallery({ year }) {
     <div className="max-w-5xl mx-auto px-16 pt-10 pb-24">
       {/* Year header */}
       <div className="mb-12 border-b border-stone-100 pb-4 flex justify-between items-end">
-        <h2 className="font-['Outfit',_sans-serif] text-3xl text-stone-800 tracking-wide">
+        <h1 className="font-['Outfit',_sans-serif] text-3xl text-stone-800 tracking-wide">
           {year}
-        </h2>
+        </h1>
       </div>
 
       <div className="columns-1 sm:columns-2 lg:columns-3 gap-10">

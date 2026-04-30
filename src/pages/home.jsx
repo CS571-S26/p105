@@ -3,8 +3,8 @@ import { artworkByYear } from "../data/artworkData";
 
 const allArtworks = Object.values(artworkByYear).flat();
 
-const FADE_MS = 1500; // crossfade duration ms
-const HOLD_MS = 6000; // hold time per image ms
+const FADE_MS = 1500;
+const HOLD_MS = 6000;
 
 function shuffle(arr) {
   const a = [...arr];
@@ -19,9 +19,7 @@ export default function Home() {
   const [queue, setQueue] = useState(() => shuffle(allArtworks));
   const [currentIdx, setCurrentIdx] = useState(0);
   const [nextIdx, setNextIdx] = useState(1);
-  // which "slot" is on top: true = A on top, false = B on top
   const [aOnTop, setAOnTop] = useState(true);
-  // A and B hold the two images being crossfaded
   const [slotA, setSlotA] = useState(allArtworks[0]);
   const [slotB, setSlotB] = useState(allArtworks[1]);
   const [transitioning, setTransitioning] = useState(false);
@@ -45,17 +43,12 @@ export default function Home() {
 
       setTransitioning(true);
 
-      // Load the incoming image into the bottom slot
       setAOnTop((prev) => {
-        if (prev) {
-          setSlotB(nextArtwork);
-        } else {
-          setSlotA(nextArtwork);
-        }
+        if (prev) setSlotB(nextArtwork);
+        else setSlotA(nextArtwork);
         return prev;
       });
 
-      // After a tiny delay (let the new image render), flip opacity
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           setAOnTop((prev) => !prev);
@@ -68,7 +61,6 @@ export default function Home() {
     [queue, currentIdx, transitioning],
   );
 
-  // Auto-advance
   useEffect(() => {
     intervalRef.current = setInterval(() => advance(1), HOLD_MS + FADE_MS);
     return () => clearInterval(intervalRef.current);
@@ -109,13 +101,23 @@ export default function Home() {
         }}
       />
 
+      {/* White gradient at top — solid for longer before fading */}
+      <div
+        className="absolute inset-x-0 top-0 z-10 pointer-events-none"
+        style={{
+          height: "40%",
+          background:
+            "linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%)",
+        }}
+      />
+
       {/* Caption */}
-      <div className="absolute top-32 left-16 z-10">
-        <h1 className="font-['Outfit',_sans-serif] font-light text-4xl tracking-wide text-rose-300 leading-tight mb-1">
+      <div className="absolute top-32 left-16 z-20">
+        <h1 className="font-['Outfit',_sans-serif] font-light text-4xl tracking-wide text-stone-500 leading-tight mb-1">
           {current.title}
         </h1>
         {current.year && (
-          <h2 className="font-['Outfit',_sans-serif] font-light text-xl tracking-widest text-rose-200">
+          <h2 className="font-['Outfit',_sans-serif] font-light text-xl tracking-widest text-rose-300">
             {current.year}
           </h2>
         )}

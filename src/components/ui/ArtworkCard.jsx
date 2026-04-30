@@ -9,7 +9,7 @@ function ArtworkCard({ artwork, yearSlug }) {
     <Button
       className="group block w-full text-left break-inside-avoid mb-6
                  outline-none cursor-pointer
-                 focus-visible:ring-2 focus-visible:ring-stone-800 focus-visible:ring-offset-2"
+                 focus-visible:ring-2 focus-visible:ring-stone-500 focus-visible:ring-offset-2"
       onPress={() => navigate(`/artwork/${yearSlug}/${artwork.id}`)}
     >
       {/* Image */}
@@ -24,11 +24,11 @@ function ArtworkCard({ artwork, yearSlug }) {
 
       {/* Caption */}
       <div className="pt-2.5">
-        <p className="font-['Outfit',_sans-serif] text-[0.88rem] leading-snug text-stone-800 mb-0.5">
+        <p className="font-['Outfit',_sans-serif] text-[0.88rem] leading-snug text-stone-500 mb-0.5">
           {artwork.title}
         </p>
         {(artwork.medium || artwork.size) && (
-          <p className="font-['Outfit',_sans-serif] text-[0.7rem] tracking-[0.04em] text-stone-400">
+          <p className="font-['Outfit',_sans-serif] text-[0.7rem] tracking-[0.04em] text-rose-200">
             {artwork.medium}
             {artwork.size ? ` | ${artwork.size}` : ""}
           </p>
