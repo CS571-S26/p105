@@ -12,9 +12,7 @@ export default function Navbar() {
       <ul className="flex items-center gap-8 list-none m-0 p-0">
         <li>
           <Dropdown label="artwork">
-            <DropdownItem as={Link} to="/artwork/2026">
-              2026
-            </DropdownItem>
+            <DropdownItem to="/artwork/2026">2026</DropdownItem>
             <DropdownItem to="/artwork/2025">2025</DropdownItem>
             <DropdownItem to="/artwork/2024">2024</DropdownItem>
             <DropdownItem to="/artwork/2023">2023</DropdownItem>

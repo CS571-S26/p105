@@ -7,11 +7,137 @@ export const artworkByYear = {
   2026: [
     {
       id: "2026-1",
+      title: "Following Our Heart, Finding a Way",
+      medium: "acrylic on cradled panel",
+      size: '10"',
+      year: 2026,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/6616f0c5-f9ca-4e9e-abe9-ddb3069591ed/Yi+Du+-+Following+Our+Heart%2C+Finding+a+Way.jpg",
+    },
+    {
+      id: "2026-2",
+      title: "Following Our Heart, Finding a Way (detail)",
+      medium: "acrylic on cradled panel",
+      size: '10"',
+      year: 2026,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/815fc16a-d6a3-4784-875c-2e1b6523d9c3/Yi+Du+-+Following+Our+Heart%2C+Finding+a+Way+-+detail.jpg",
+    },
+    {
+      id: "2026-3",
+      title: "Demon Hunter - Actias Artemis",
+      medium: "mixed media on cradled panel",
+      size: '14 × 11"',
+      year: 2026,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/a8c247f7-2c0f-449d-a22e-3218f9ec0a59/Demon+Hunter+-+Actias+artemis.jpg",
+    },
+    {
+      id: "2026-4",
+      title: "Demon Hunter - Actias Artemis (detail)",
+      medium: "mixed media on cradled panel",
+      size: '14 × 11"',
+      year: 2026,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/7aed6c48-1a2a-4540-9862-bb321381d2c0/Demon+Hunter+-+Actias+artemis+-+detail+2.jpg",
+    },
+    {
+      id: "2026-5",
+      title: "The Test",
+      medium: "acrylic and watercolor on panel",
+      size: '9 × 12"',
+      year: 2026,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/a437cf41-769e-4fa4-bdf7-6b221f8b5889/the+test+600dpi.jpg",
+    },
+    {
+      id: "2026-6",
+      title: "The Test (detail)",
+      medium: "acrylic and watercolor on panel",
+      size: '9 × 12"',
+      year: 2026,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/4493c008-3e0f-465a-a989-d86943174327/the+test+detail1.jpg",
+    },
+    {
+      id: "2026-7",
       title: "The Test Detail 3",
       medium: "acrylic on panel",
       year: 2026,
       image:
         "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/1767669551402-KM8LIECH17ESMFQCIDCK/the%2Btest%2Bdetail%2B3.jpg",
+    },
+    {
+      id: "2026-8",
+      title: "The Alchemist",
+      medium: "mixed media on cradled panel",
+      size: '10"',
+      year: 2026,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/d7d47beb-5ade-45b1-b225-45efac660831/the+alchemist.jpg",
+    },
+    {
+      id: "2026-9",
+      title: "The Alchemist (detail)",
+      medium: "mixed media on cradled panel",
+      size: '10"',
+      year: 2026,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/320f9e15-0f87-4f95-bbeb-e7b9c5d4fca0/the+alchemist+-+detail.jpg",
+    },
+    {
+      id: "2026-10",
+      title: "Ephemeral Tides",
+      medium: "graphite and ink on Arches paper",
+      size: '12 × 12"',
+      year: 2026,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/df0453d1-c7e2-486c-9d0c-c70851ebc3e6/Ergo%2C+B%26W+-+Ephemeral+Tides+-+Yi+Du+-+2026.jpg",
+    },
+    {
+      id: "2026-11",
+      title: "Ephemeral Tides (detail)",
+      medium: "graphite and ink on Arches paper",
+      size: '12 × 12"',
+      year: 2026,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/ee42e9ea-fdda-4ba9-81c4-49544d8d15ab/Ergo%2C+B%26W+-+Ephemeral+Tides+-+Yi+Du+-+2026+-+detail.jpg",
+    },
+    {
+      id: "2026-12",
+      title: "Moon Water",
+      medium: "acrylic on cradled panel",
+      size: '11 × 14"',
+      year: 2026,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/30765587-ae75-407c-820c-c818ffb04aa5/AEA%2C+Elixir+II+-Moon+Water+-+Yi+Du+-+2026.jpg",
+    },
+    {
+      id: "2026-13",
+      title: "Moon Water (detail 1)",
+      medium: "acrylic on cradled panel",
+      size: '11 × 14"',
+      year: 2026,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/3b95bbe7-1fb3-45b5-85d6-7f2a17f94698/AEA%2C+Elixir+II+-Moon+Water+-+Yi+Du+-+2026+-+detail.jpg",
+    },
+    {
+      id: "2026-14",
+      title: "Moon Water (detail 2)",
+      medium: "acrylic on cradled panel",
+      size: '11 × 14"',
+      year: 2026,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/c288e487-a473-48b7-8ea7-75c23015b053/AEA%2C+Elixir+II+-Moon+Water+-+Yi+Du+-+2026+-+detail2.jpg",
+    },
+    {
+      id: "2026-15",
+      title: "Moon Water (detail 3)",
+      medium: "acrylic on cradled panel",
+      size: '11 × 14"',
+      year: 2026,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/ed3a0350-19fa-4729-b046-f1faab181776/AEA%2C+Elixir+II+-Moon+Water+-+Yi+Du+-+2026+-+detail3.jpg",
     },
   ],
   2025: [
@@ -200,41 +326,321 @@ export const artworkByYear = {
   2024: [
     {
       id: "2024-1",
-      title: "Untitled 2024",
-      medium: "acrylic on panel",
+      title: "Seadragon",
+      medium: "ink on paper",
+      size: '12 × 12"',
       year: 2024,
       image:
-        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/1767669694523-BDTK67LFW3P02YYYHUE7/IMG_0001.jpg",
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/14c05502-e96a-47f9-a51f-37b3fdffd424/IMG_0001.jpeg",
+    },
+    {
+      id: "2024-2",
+      title: "Seadragon (detail)",
+      medium: "ink on paper",
+      size: '12 × 12"',
+      year: 2024,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/f27de5b8-0c6b-4133-b541-8a6f3d15972f/Seadragon+-+2024+-+detail.jpg",
+    },
+    {
+      id: "2024-3",
+      title: "Wildflowers",
+      medium: "acrylic gouache on panel",
+      size: '6 × 6"',
+      year: 2024,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/7c37669b-2814-4b71-bdf6-022894ca01c5/wildflowers_2024_6x6.gif",
+    },
+    {
+      id: "2024-4",
+      title: "Eurytides Epidaus Fenochionis",
+      medium: "acrylic gouache on panel",
+      size: '6 × 6"',
+      year: 2024,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/b24b4e4f-2d0b-4cb8-b28e-d6d5c9018b51/eurytides+epidaus+fenochionis_2024_6x6.gif",
+    },
+    {
+      id: "2024-5",
+      title: "A New Leaf",
+      medium: "graphite and watercolor on paper",
+      size: '12 × 12"',
+      year: 2024,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/e30aed30-212b-488e-83cf-a5fbc98c53a4/Ergo%2C+B%26W+-+a+new+leaf+-+Yi+Du+-+2024.jpg",
+    },
+    {
+      id: "2024-6",
+      title: "La Petite Mort",
+      medium: "graphite and watercolor on paper",
+      size: '12 × 12"',
+      year: 2024,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/f3333d98-1714-450f-9762-00aa3f0d4516/Ergo%2C+B%26W+-+la+petite+mort+-+Yi+Du+-+2024.jpg",
+    },
+    {
+      id: "2024-7",
+      title: "Ocean (mural, view 1)",
+      medium: "interior mural",
+      size: "8 × 4'",
+      year: 2024,
+      note: "Flourish on Rainier | 7930 Rainier Ave S, Seattle, WA",
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/15ebe638-105f-4982-8a7d-2609cb83c944/IMG_2332.jpg",
+    },
+    {
+      id: "2024-8",
+      title: "Ocean (mural, view 2)",
+      medium: "interior mural",
+      size: "8 × 4'",
+      year: 2024,
+      note: "Flourish on Rainier | 7930 Rainier Ave S, Seattle, WA",
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/7ec6562e-13a6-438a-9f75-377c2c75a136/IMG_2364.jpg",
+    },
+    {
+      id: "2024-9",
+      title: "Meadow (mural)",
+      medium: "interior mural",
+      size: "8 × 2'",
+      year: 2024,
+      note: "Flourish on Rainier | 7930 Rainier Ave S, Seattle, WA",
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/082c0fc6-a917-4176-a441-dd61cb6e4354/IMG_2277+%281%29.PNG",
     },
   ],
   2023: [
     {
       id: "2023-1",
-      title: "2023 Works",
-      medium: "mixed media",
+      title: "Southern Resident Orcas",
+      medium: "mural",
+      size: "8 × 8'",
+      year: 2023,
+      note: "Waypoint Park, Bellingham, Washington",
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/4149dc0b-cf9c-495e-b78a-2fa6c5bf1b84/Southern+Resident+Orcas_2023_8x8.jpg",
+    },
+    {
+      id: "2023-2",
+      title: "Time",
+      medium: "watercolor",
+      size: '11 × 14"',
+      year: 2023,
+      note: "Seattle Public Library",
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/01a5c081-3753-4925-a41c-34433e6c69cd/time_2023_11x14.jpg",
+    },
+    {
+      id: "2023-3",
+      title: "Present",
+      medium: "watercolor",
+      size: '8 × 8"',
+      year: 2023,
+      note: "Seattle Public Library",
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/925b3d60-22eb-4615-8e7a-15d8de03727f/present_2023_8x8.jpg",
+    },
+    {
+      id: "2023-4",
+      title: "Chimera",
+      medium: "acrylic gouache on cherry veneer",
+      size: '12 × 12"',
       year: 2023,
       image:
-        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/95b649f6-4ef4-4663-a666-c7f1d63770e1/2023.jpg",
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/15e58838-2b45-40c2-9893-f64ac43a635d/chimera_2023_11x11.jpg",
+    },
+    {
+      id: "2023-5",
+      title: "V. Dentata Tigris",
+      medium: "acrylic on panel",
+      size: '20 × 20"',
+      year: 2023,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/f25be163-a3d8-42ef-937f-8cb7cc15399f/v_dentata_tigris_2023_20x20.gif",
     },
   ],
   2022: [
     {
       id: "2022-1",
-      title: "2022 Works",
-      medium: "mixed media",
+      title: "I Found a Message in a Bottle, the Page is Wet, Words Dissolved",
+      medium: "acrylic gouache on panel",
+      size: '16"',
       year: 2022,
       image:
-        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/63717901-858b-4519-bc8a-8151cf843293/2022.jpg",
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/f87c8549-57fe-4bed-8f6a-3b6ac268e23e/message_in_a_bottle_2022_16x16.gif",
+    },
+    {
+      id: "2022-2",
+      title: "Nature is Healing",
+      medium: "acrylic, oil on repurposed closet door",
+      size: "2.7 × 6.5'",
+      year: 2022,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/ce0515d2-aedf-4aba-8569-02cce9d59f74/nature_is_healing_2022_2.7x6.5.gif",
+    },
+    {
+      id: "2022-3",
+      title: "Skagit Valley Tulips",
+      medium: "watercolor",
+      size: '2 × 3"',
+      year: 2022,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/4c42a572-1e04-4c17-b16b-41f91f8785e3/skagit_valley_tulips_2022_2x3.jpg",
+    },
+    {
+      id: "2022-4",
+      title: "Papilio Rutulus",
+      medium: "watercolor",
+      size: '6 × 6"',
+      year: 2022,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/f5c80682-8146-4782-a4f5-5aa44f6e5cef/papilio+rutulus+600dpi.jpg",
+    },
+    {
+      id: "2022-5",
+      title: "Another Day, Another Sunset 1",
+      medium: "watercolor",
+      size: '11 × 8.5"',
+      year: 2022,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/022cc02d-212b-4be5-888f-6f852b927d9f/600dpi070.jpg",
     },
   ],
   "2016-2021": [
     {
       id: "2021-1",
-      title: "2016–2021 Works",
-      medium: "mixed media",
+      title: "Paradise in Autumn",
+      medium: "watercolor",
+      size: '11 × 8.5"',
+      year: 2018,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/10dce451-1967-4069-9f13-2b661ecadb9c/paradise_in_autumn_2018_11x8.5.jpg",
+    },
+    {
+      id: "2021-2",
+      title: "A Wish",
+      medium: "acrylic on panel",
+      size: '3 × 3"',
+      year: 2020,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/5b9020dd-52f1-45da-80ff-7bb2ddf64d76/a_wish_2020_3x3.jpg",
+    },
+    {
+      id: "2021-3",
+      title: "Rebirth",
+      medium: "pencil and watercolor on panel",
+      size: '6 × 6"',
+      year: 2020,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/351ad5dd-70df-4392-adaa-566095ccc548/Rebirth_2020_6x6.jpg",
+    },
+    {
+      id: "2021-4",
+      title: "Adiantum",
+      medium: "watercolor",
+      size: '7 × 7"',
+      year: 2018,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/14289b53-3586-42aa-828b-33447eadbf25/adiantum_2018_7x7.jpg",
+    },
+    {
+      id: "2021-5",
+      title: "Gratitude",
+      medium: "pencil and ink",
+      size: '6 × 8"',
+      year: 2019,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/531cb6d5-db31-4150-8ae1-5475f9109339/Gratitude_2019_6x8.jpg",
+    },
+    {
+      id: "2021-6",
+      title: "Sawtooth Meadow",
+      medium: "watercolor",
+      size: '21.5 × 9.5"',
+      year: 2019,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/3506be14-b293-4178-bd39-f3a5deeda72c/sawtooth_meadow_2019_21.5x9.5.jpg",
+    },
+    {
+      id: "2021-7",
+      title: "Monstera",
+      medium: "pencil and watercolor",
+      size: '6 × 8"',
+      year: 2020,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/06396187-7bab-42ee-943f-a2e852269420/monstera_2020_6x8.jpg",
+    },
+    {
+      id: "2021-8",
+      title: "Rainy Sunday",
+      medium: "watercolor",
+      size: '10 × 13"',
+      year: 2019,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/f87575db-c068-4c3a-9be8-5ce3aca129b6/rainy_sunday_2019_10x13.jpg",
+    },
+    {
+      id: "2021-9",
+      title: "Palm",
+      medium: "watercolor",
+      size: '13 × 10"',
+      year: 2018,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/febba093-326c-45f4-aa12-a1877aaeca23/palm_2018_13x10.jpg",
+    },
+    {
+      id: "2021-10",
+      title: "Daydreamer",
+      medium: "pencil, ink, watercolor",
+      size: '7 × 7"',
+      year: 2019,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/27e177cf-6c83-44f3-8991-785ddc600a71/Daydreamer_2019_7x7.gif",
+    },
+    {
+      id: "2021-11",
+      title: "Joffre Lake",
+      medium: "watercolor",
+      size: '13 × 17"',
+      year: 2019,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/a3d34d21-400e-4669-8f24-bf3a969b21eb/joffrelake_2019_13x17.jpg",
+    },
+    {
+      id: "2021-12",
+      title: "Springtime Storm",
+      medium: "watercolor",
+      size: '11 × 8.5"',
+      year: 2018,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/4e5cb953-7d4d-4d3f-b4ab-2a1c4dd046f4/springtime_storm_2018_11x8.5.jpg",
+    },
+    {
+      id: "2021-13",
+      title: "Southern Resident Orcas",
+      medium: "watercolor",
+      size: '9.5 × 21.5"',
+      year: 2019,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/e14b6b92-3721-4108-b3c5-624b1c941bdb/southern_resident_orcas_2019_9.5x21.5.jpg",
+    },
+    {
+      id: "2021-14",
+      title: "Stargazing",
+      medium: "watercolor",
+      size: '10 × 13"',
+      year: 2016,
+      image:
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/b392a0d7-c069-462a-9830-7c4cb5c030c5/stargazing_2016_10x13.jpg",
+    },
+    {
+      id: "2021-15",
+      title: "Pastel Moon",
+      medium: "watercolor",
+      size: '5 × 7"',
       year: 2021,
       image:
-        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/a4776425-e3f2-479f-a966-95cc79e3361c/2021.jpg",
+        "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/6d3be2a2-6026-4973-8e43-fa7327180194/pastel_moon_2021_5x7.jpg",
     },
   ],
 };
@@ -285,6 +691,7 @@ export const butterflies = [
     name: "papilio rutulus",
     size: '3.5"',
     year: 2022,
+    available: true,
     image:
       "https://images.squarespace-cdn.com/content/v1/647d2d1785f77f4daf0c67b4/55de75c5-119f-40fa-aac3-672a7ef55c1c/papilio_rutulus_2022_3.5.gif",
   },
