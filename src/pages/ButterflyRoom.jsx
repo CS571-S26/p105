@@ -309,7 +309,7 @@ function ButterflyRoom() {
                     {caughtBf.name}
                   </p>
                   <p
-                    className="font-['Jost'] text-[0.75rem] tracking-[0.1em] uppercase m-0"
+                    className="font-['Outfit'] text-[0.75rem] tracking-[0.1em] uppercase m-0"
                     style={{ color: themeColors.text }}
                   >
                     {caughtBf.size} · {caughtBf.year}

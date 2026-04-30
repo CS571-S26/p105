@@ -2,7 +2,7 @@ const EMAIL = "authenticit.yidu@gmail.com";
 
 export default function Contact() {
   return (
-    <div className="px-48 py-16 flex justify-between items-start">
+    <div className="px-48 py-16 flex justify-between items-start font-['Outfit',_sans-serif]">
       <div>
         <h1 className="text-5xl font-light text-rose-200 tracking-wide mb-12">
           contact

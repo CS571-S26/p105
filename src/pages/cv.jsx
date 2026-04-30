@@ -1,6 +1,6 @@
 export default function CV() {
   return (
-    <div className="px-48 py-16">
+    <div className="px-48 py-16 font-['Outfit',_sans-serif]">
       {/* Header row */}
       <div className="flex justify-between items-start mb-16">
         <div>

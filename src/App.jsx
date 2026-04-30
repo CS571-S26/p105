@@ -8,8 +8,11 @@ function App() {
   return (
     <RouterProvider navigate={navigate} useHref={useHref}>
       <Navbar />
-      <AppRouter />
+      <div className="pt-24">
+        <AppRouter />
+      </div>
     </RouterProvider>
   );
 }
+
 export default App;

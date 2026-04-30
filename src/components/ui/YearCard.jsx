@@ -19,12 +19,13 @@ function YearCard({ year, image, onPress }) {
                      group-hover:scale-[1.04]"
         />
       )}
+
       {/* Gradient label */}
       <div
         className="absolute bottom-0 left-0 right-0 pt-16 pb-5 px-5
                    bg-gradient-to-t from-black/55 to-transparent"
       >
-        <span className="font-['Cormorant_Garamond'] text-2xl font-light tracking-[0.06em] text-white">
+        <span className="font-['Outfit',_sans-serif] text-2xl font-light tracking-[0.06em] text-white">
           {year}
         </span>
       </div>

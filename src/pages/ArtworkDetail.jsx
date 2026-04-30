@@ -1,8 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "react-aria-components";
-import Zoom from "react-medium-image-zoom";
-import "react-medium-image-zoom/dist/styles.css";
+import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
 import { artworkByYear } from "../data/artworkData";
 
 export default function ArtworkDetail() {
@@ -11,97 +12,108 @@ export default function ArtworkDetail() {
   const artworks = artworkByYear[year] || [];
   const currentIdx = artworks.findIndex((a) => a.id === artworkId);
   const artwork = artworks[currentIdx];
-  const topRef = useRef(null);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
-  // Auto-scroll to top when moving between artworks
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [artworkId]);
 
   if (!artwork)
-    return <div className="p-20 text-center">Artwork not found.</div>;
+    return (
+      <div className="p-20 text-center font-['Outfit',_sans-serif] text-stone-400">
+        Artwork not found.
+      </div>
+    );
+
+  const slides = artworks.map((a) => ({ src: a.image, alt: a.title }));
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      {/* ── Section 1: The "Hero" Image (Fullscreen feel) ── */}
-      <section className="h-screen w-full flex flex-col items-center justify-center p-4 md:p-12 border-b border-stone-100">
-        <div className="w-full h-full flex items-center justify-center relative">
-          <Zoom key={artwork.id}>
-            <img
-              src={artwork.image}
-              alt={artwork.title}
-              className="max-w-full max-h-[85vh] w-auto h-auto object-contain"
-            />
-          </Zoom>
+    <div className="min-h-screen bg-white px-8 py-6 md:px-16 max-w-6xl mx-auto">
+      {/* Back link */}
+      <div className="pb-4">
+        <Button
+          className="font-['Outfit',_sans-serif] text-xs uppercase tracking-widest text-stone-400 hover:text-black transition-colors outline-none cursor-pointer"
+          onPress={() => navigate(`/artwork/${year}`)}
+        >
+          ← {year}
+        </Button>
+      </div>
 
-          {/* Subtle scroll hint */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 animate-bounce opacity-30">
-            <span className="font-['Jost'] text-[0.6rem] uppercase tracking-widest text-black">
-              Scroll for details
-            </span>
-          </div>
-        </div>
+      {/* Main image */}
+      <section className="flex justify-center pb-6">
+        <button
+          className="group relative cursor-zoom-in outline-none"
+          onClick={() => setLightboxOpen(true)}
+          aria-label="Open zoom view"
+        >
+          <img
+            src={artwork.image}
+            alt={artwork.title}
+            className="max-h-[60vh] w-auto max-w-full object-contain transition-opacity duration-300 group-hover:brightness-90"
+          />
+        </button>
       </section>
 
-      {/* ── Section 2: Artwork Details (Below the fold) ── */}
-      <section className="max-w-4xl mx-auto w-full px-6 py-24">
-        <div className="grid md:grid-cols-3 gap-12">
-          {/* Metadata */}
-          <div className="md:col-span-2">
-            <h1 className="font-['Cormorant_Garamond'] italic text-4xl md:text-5xl text-stone-900 mb-6">
-              {artwork.title}
-            </h1>
-            <div className="space-y-4 font-['Jost'] text-stone-500 tracking-wide text-sm uppercase">
-              <p>{artwork.medium}</p>
-              <p>{artwork.size}</p>
-              {artwork.note && (
-                <p className="normal-case italic text-stone-400 mt-8 border-l border-stone-200 pl-4">
-                  {artwork.note}
-                </p>
-              )}
-            </div>
-          </div>
+      {/* Metadata */}
+      <section className="max-w-2xl mx-auto pb-6 border-b border-stone-100">
+        <h1 className="font-['Outfit',_sans-serif] text-2xl text-stone-900 mb-1 tracking-wide">
+          {artwork.title}
+        </h1>
+        <p className="font-['Outfit',_sans-serif] text-xs uppercase tracking-widest text-stone-400">
+          {[artwork.medium, artwork.size, artwork.year]
+            .filter(Boolean)
+            .join(" · ")}
+        </p>
+        {artwork.note && (
+          <p className="mt-3 font-['Outfit',_sans-serif] text-sm italic text-stone-400 border-l border-stone-200 pl-4">
+            {artwork.note}
+          </p>
+        )}
+      </section>
 
-          {/* Quick Nav / Year Link */}
-          <div className="flex flex-col justify-between items-start md:items-end">
+      {/* Filmstrip nav (Kept this one) */}
+      <section className="max-w-2xl mx-auto pt-6">
+        <p className="font-['Outfit',_sans-serif] text-[0.65rem] uppercase tracking-widest text-stone-300 mb-3">
+          {year} — {currentIdx + 1} / {artworks.length}
+        </p>
+        <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
+          {artworks.map((a, i) => (
             <Button
-              className="font-['Jost'] text-xs uppercase tracking-widest text-stone-400 hover:text-black transition-colors"
-              onPress={() => navigate(`/artwork/${year}`)}
+              key={a.id}
+              onPress={() => navigate(`/artwork/${year}/${a.id}`)}
+              className={`flex-shrink-0 w-14 h-14 transition-opacity outline-none cursor-pointer ${
+                i === currentIdx
+                  ? "opacity-100 ring-1 ring-black ring-offset-2"
+                  : "opacity-30 hover:opacity-80"
+              }`}
             >
-              ← Back to {year}
+              <img
+                src={a.image}
+                alt=""
+                className="w-full h-full object-cover"
+              />
             </Button>
-          </div>
-        </div>
-
-        {/* ── Section 3: Filmstrip Navigation ── */}
-        <div className="mt-24 pt-12 border-t border-stone-100">
-          <div className="flex justify-between items-center mb-6">
-            <span className="font-['Jost'] text-[0.65rem] uppercase tracking-widest text-stone-300">
-              Collection {year} — {currentIdx + 1} of {artworks.length}
-            </span>
-          </div>
-
-          <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-none">
-            {artworks.map((a, i) => (
-              <Button
-                key={a.id}
-                onPress={() => navigate(`/artwork/${year}/${a.id}`)}
-                className={`flex-shrink-0 w-20 h-20 transition-opacity ${
-                  i === currentIdx
-                    ? "opacity-100 ring-1 ring-black ring-offset-2"
-                    : "opacity-30 hover:opacity-100"
-                }`}
-              >
-                <img
-                  src={a.image}
-                  alt=""
-                  className="w-full h-full object-cover"
-                />
-              </Button>
-            ))}
-          </div>
+          ))}
         </div>
       </section>
+
+      {/* Lightbox - Thumbnails plugin removed */}
+      <Lightbox
+        open={lightboxOpen}
+        close={() => setLightboxOpen(false)}
+        slides={slides}
+        index={currentIdx}
+        plugins={[Zoom]}
+        zoom={{ scrollToZoom: true, maxZoomPixelRatio: 3 }}
+        on={{
+          view: ({ index }) => {
+            const target = artworks[index];
+            if (target && target.id !== artworkId) {
+              navigate(`/artwork/${year}/${target.id}`, { replace: true });
+            }
+          },
+        }}
+      />
     </div>
   );
 }
