@@ -73,9 +73,6 @@ export default function ArtworkDetail() {
 
       {/* Filmstrip nav (Kept this one) */}
       <section className="max-w-2xl mx-auto pt-6">
-        <p className="font-['Outfit',_sans-serif] text-[0.65rem] uppercase tracking-widest text-stone-300 mb-3">
-          {year} — {currentIdx + 1} / {artworks.length}
-        </p>
         <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
           {artworks.map((a, i) => (
             <Button
